@@ -8,7 +8,6 @@ const Navbar = () => (
         <ul className="right">
           <li><a href="/"><i className="material-icons left tiny">home</i> Home</a></li>
           <li><a href="/saved"><i className="material-icons left tiny">save</i> Saved Articles</a></li>
-          <li><a href="/scrape" id="btn-scrape"className="btn waves-effect waves-light orange"><i className="material-icons left tiny">clear_all</i> Scrape Articles</a></li>
         </ul>
       </div>
     </nav>

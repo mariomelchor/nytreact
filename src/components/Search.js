@@ -9,18 +9,18 @@ const Searched = () => (
             <div className="row">
               <div className="input-field col s12">
                 <input id="topic" type="text" className="validate" />
-                <label for="topic">Topic</label>
+                <label htmlFor="topic">Topic</label>
               </div>
               <div className="input-field col s12">
                 <input id="start_year" type="text" className="validate" />
-                <label for="start_year">Start Year</label>
+                <label htmlFor="start_year">Start Year</label>
               </div>
               <div className="input-field col s12">
-                <input id="end_year" type="text" class="validate" />
-                <label for="end_year">End Year</label>
+                <input id="end_year" type="text" className="validate" />
+                <label htmlFor="end_year">End Year</label>
               </div>
             </div>
-            <a class="waves-effect waves-light btn">Search</a>
+            <button type="submit" className="waves-effect waves-light btn">Search</button>
           </form>
         </div>
     </div>
