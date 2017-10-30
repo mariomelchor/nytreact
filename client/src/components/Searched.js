@@ -1,7 +1,11 @@
 import React from "react";
 
+var divStyle = {
+  display: "none",
+};
+
 const Searched = () => (
-  <div className="card">
+  <div className="card" style={divStyle}>
     <div className="card-content">
       <span className="card-title">Searched Articles</span>
       <ul className="collection">
