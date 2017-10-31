@@ -11,5 +11,8 @@ router.route("/:id")
   .get(articlesController.findById)
   .put(articlesController.update)
   .delete(articlesController.remove);
+
+// Matches with "/api/articles/saved"
+router.route("/saved").get(articlesController.findSaved);
   
 module.exports = router;

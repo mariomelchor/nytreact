@@ -14,6 +14,11 @@ const articleSchema = new Schema({
   url: {
     type: String,
     required: true
+  },
+  saved: {
+    type: Boolean,
+    default: false,
+    required: true
   }
 });
 
