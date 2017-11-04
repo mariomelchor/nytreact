@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
+import Card from "./Card";
 
 class Saved extends Component {
   // Setting the initial values
@@ -52,7 +53,7 @@ class Saved extends Component {
             </div>
           </div>
         ) : (
-          <h3>No Saved Articles to Display</h3>
+          <Card cardTitle="No Saved Articles to Display" />
         )}
       </div>
     );

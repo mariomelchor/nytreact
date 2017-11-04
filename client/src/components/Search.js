@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Searched from "./Searched";
+// import Searched from "./Searched";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
+import Card from "./Card";
+import SearchForm from "./SearchForm";
 
 class Search extends Component {
   // Setting the initial values
@@ -21,6 +23,19 @@ class Search extends Component {
       [name]: value
     });
   };
+
+  // displays search form
+  searchForm = () => {
+    return (
+      <SearchForm 
+        topic={this.state.topic} 
+        startYear={this.state.start_year} 
+        endYear={this.state.end_year} 
+        handleInputChange={this.handleInputChange} 
+        handleFormSubmit={this.handleFormSubmit}
+      />
+    )
+  }
 
   // When the form is submitted, prevent the default event
   handleFormSubmit = event => {
@@ -61,6 +76,23 @@ class Search extends Component {
 
   };
 
+  // displays search results
+  searchResults = () => {
+    return (
+      <ul className="collection">
+        {this.state.articles.map(article => (
+          <li key={article._id} id={article._id} className="collection-item avatar">
+            <i className="material-icons circle">format_align_left</i>
+            <span className="title">{article.headline.main}</span>
+            <p><small>Date Published: {article.pub_date}</small> <br /> 
+            <Link to={article.web_url} className="black-text" target="_blank"><i className="material-icons tiny">call_made</i> View Article</Link>
+            <Link to="#" className="secondary-content" onClick={() => this.saveArticle(article.headline.main, article.pub_date, article.web_url)}><i className="material-icons">save</i></Link></p>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
   // Save an Article
   saveArticle = (title, date, url) => {
     API.saveArticle({
@@ -76,56 +108,8 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <div className="card">
-          <div className="card-content">
-            <span className="card-title">Search for Articles</span>
-              <div className="row">
-                <form className="col s12">
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <input id="topic" name="topic" type="text" value={this.state.topic} onChange={this.handleInputChange} className="validate" />
-                      <label htmlFor="topic">Topic</label>
-                    </div>
-                    <div className="input-field col s12">
-                      <input id="start_year" name="start_year" type="text" value={this.state.start_year} onChange={this.handleInputChange} className="validate" />
-                      <label htmlFor="start_year">Start Year</label>
-                    </div>
-                    <div className="input-field col s12">
-                      <input id="end_year" name="end_year" type="text" value={this.state.end_year} onChange={this.handleInputChange} className="validate" />
-                      <label htmlFor="end_year">End Year</label>
-                    </div>
-                  </div>
-                  <button type="submit" className="waves-effect waves-light btn" onClick={this.handleFormSubmit}>Search</button>
-                </form>
-              </div>
-          </div>
-        </div>
-
-        <Searched />
-
-        {this.state.articles.length ? (
-          <div className="card">
-            <div className="card-content">
-            <span className="card-title">Searched Articles</span>
-            <ul className="collection">
-            {this.state.articles.map(article => (
-
-              <li key={article._id} id={article._id} className="collection-item avatar">
-                <i className="material-icons circle">format_align_left</i>
-                <span className="title">{article.headline.main}</span>
-                <p><small>Date Published: {article.pub_date}</small> <br /> 
-                <Link to={article.web_url} className="black-text" target="_blank"><i className="material-icons tiny">call_made</i> View Article</Link>
-                <Link to="#" className="secondary-content" onClick={() => this.saveArticle(article.headline.main, article.pub_date, article.web_url)}><i className="material-icons">save</i></Link></p>
-              </li>
-
-            ))}
-            </ul>
-            </div>
-          </div>
-        ) : (
-          <h3>No Articles to Display</h3>
-        )}
-
+        <Card cardTitle="Search for Articles" cardContent={this.searchForm()} />
+        { this.state.articles.length ? <Card cardTitle="Search Results" cardContent={this.searchResults()} /> : '' }
       </div>
     );
   }
