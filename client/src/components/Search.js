@@ -13,20 +13,6 @@ class Search extends Component {
     end_year: ""
   };
 
-  // Load Articles
-  componentDidMount() {
-    this.loadArticles();
-  }
-
-  loadArticles = () => {
-    console.log('Loading Articles');
-    API.getArticles()
-      .then(res =>
-        this.setState({ articles: res.data, topic: "", start_year: "", end_year: "" })
-      )
-      .catch(err => console.log(err));
-  };
-
   // handle any changes to the input fields
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -65,22 +51,9 @@ class Search extends Component {
 
     // API Get Request
     axios.get(queryURL)
-    .then(function (nytimes) {
+    .then(nytimes => {
       // console.log(nytimes.data.response.docs);
-
-      // Save Article
-      nytimes.data.response.docs.map(article => (
-        API.saveArticle({
-          title: article.headline.main,
-          url: article.web_url,
-        })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-      ))
-
-      // Load articles
-      // this.loadArticles();
-
+      this.setState({ articles: nytimes.data.response.docs });
     })
     .catch(function (error) {
       console.log(error);
@@ -88,20 +61,16 @@ class Search extends Component {
 
   };
 
-  // Deletes an Article
-  deleteArticle = id => {
-    API.deleteArticle(id)
-      .then(res => this.loadArticles())
-      .catch(err => console.log(err));
-  };
-
-  // Load Saved Articles
-  loadSavedArticles = () => {
-    API.getSavedArticles()
-      .then(res =>
-        this.setState({ articles: res.data, topic: "", start_year: "", end_year: "" })
-      )
-      .catch(err => console.log(err));
+  // Save an Article
+  saveArticle = (title, date, url) => {
+    API.saveArticle({
+      title: title,
+      date: date,
+      url: url,
+      saved: true
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
   };
 
   render() {
@@ -143,11 +112,10 @@ class Search extends Component {
 
               <li key={article._id} id={article._id} className="collection-item avatar">
                 <i className="material-icons circle">format_align_left</i>
-                <span className="title">{article.title}</span>
-                <p><small>Date Published: {article.date}</small> <br /> 
-                <Link to={article.url} className="black-text" target="_blank"><i className="material-icons tiny">call_made</i> View Article</Link>
-                <a href="#" className="secondary-content"><i className="material-icons">save</i></a></p>
-                <a href="#" onClick={() => this.deleteArticle(article._id)}><i className="material-icons">delete</i></a>
+                <span className="title">{article.headline.main}</span>
+                <p><small>Date Published: {article.pub_date}</small> <br /> 
+                <Link to={article.web_url} className="black-text" target="_blank"><i className="material-icons tiny">call_made</i> View Article</Link>
+                <Link to="#" className="secondary-content" onClick={() => this.saveArticle(article.headline.main, article.pub_date, article.web_url)}><i className="material-icons">save</i></Link></p>
               </li>
 
             ))}
