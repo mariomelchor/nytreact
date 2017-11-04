@@ -16,9 +16,9 @@ export default {
   // Saves an article to the database
   saveArticle: function(articleData) {
     return axios.post("/api/articles", articleData);
-  } ,
+  },
   // Updates an article to the database
   updateArticle: function(articleData) {
     return axios.put("/api/articles", articleData);
-  },
+  }
 };
