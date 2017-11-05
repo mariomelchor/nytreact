@@ -24,7 +24,7 @@ class Saved extends Component {
   // displays search results
   savedArticles = () => {
     return (
-      <ul className="collection">
+      <div className="row">
         {this.state.articles.map(article => (
           <Article
             key={article._id} 
@@ -35,7 +35,7 @@ class Saved extends Component {
             deleteArticle={this.deleteArticle}
           />
         ))}
-      </ul>
+      </div>
     )
   }
 
@@ -49,7 +49,7 @@ class Saved extends Component {
   render() {
     return (
       <div>
-        { this.state.articles.length ? <Card cardTitle="Saved Articles" cardContent={this.savedArticles()} /> : <Card cardTitle="No Saved Articles to Display" /> }
+        { this.state.articles.length ? <Card shadow={false} cardTitle="Saved Articles" cardContent={this.savedArticles()} /> : <Card cardTitle="No Saved Articles to Display" /> }
       </div>
     );
   }

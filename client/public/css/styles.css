@@ -24,3 +24,19 @@ nav .brand-logo {
 .text-center {
   text-align: center;
 }
+@media ( min-width: 768px ) {
+  .site-feature {
+    margin-bottom: -200px;
+  }
+}
+.media-fluid {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.card-no-shadow {
+  box-shadow: none;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}

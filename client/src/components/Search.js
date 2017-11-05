@@ -78,7 +78,7 @@ class Search extends Component {
   // displays search results
   searchResults = () => {
     return (
-      <ul className="collection">
+      <div className="row">
         {this.state.articles.map(article => (
           <Article
             key={article._id} 
@@ -89,7 +89,7 @@ class Search extends Component {
             saveArticle={this.saveArticle}
           />
         ))}
-      </ul>
+      </div>
     )
   }
 
@@ -108,8 +108,8 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <Card cardTitle="Search for Articles" cardContent={this.searchForm()} />
-        { this.state.articles.length ? <Card cardTitle="Search Results" cardContent={this.searchResults()} /> : '' }
+        <Card shadow={true} cardTitle="Search for Articles" cardContent={this.searchForm()} />
+        { this.state.articles.length ? <Card shadow={false} cardTitle="Search Results" cardContent={this.searchResults()} /> : '' }
       </div>
     );
   }
