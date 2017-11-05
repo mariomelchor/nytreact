@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import Searched from "./Searched";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import Card from "./Card";
 import SearchForm from "./SearchForm";
+import Article from "./Article";
 
 class Search extends Component {
   // Setting the initial values
@@ -81,13 +80,14 @@ class Search extends Component {
     return (
       <ul className="collection">
         {this.state.articles.map(article => (
-          <li key={article._id} id={article._id} className="collection-item avatar">
-            <i className="material-icons circle">format_align_left</i>
-            <span className="title">{article.headline.main}</span>
-            <p><small>Date Published: {article.pub_date}</small> <br /> 
-            <Link to={article.web_url} className="black-text" target="_blank"><i className="material-icons tiny">call_made</i> View Article</Link>
-            <Link to="#" className="secondary-content" onClick={() => this.saveArticle(article.headline.main, article.pub_date, article.web_url)}><i className="material-icons">save</i></Link></p>
-          </li>
+          <Article
+            key={article._id} 
+            articleId={article._id} 
+            articleTitle={article.headline.main} 
+            articleDate={article.pub_date}  
+            articleUrl={article.web_url}
+            saveArticle={this.saveArticle}
+          />
         ))}
       </ul>
     )
