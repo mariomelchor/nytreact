@@ -67,7 +67,7 @@ class Search extends Component {
     axios.get(queryURL)
     .then(nytimes => {
       // console.log(nytimes.data.response.docs);
-      this.setState({ articles: nytimes.data.response.docs, topic: "", start_year: "",  end_year: "" });
+      this.setState({ articles: nytimes.data.response.docs, topic: "", start_year: "", end_year: "" });
     })
     .catch(function (error) {
       console.log(error);
