@@ -48,7 +48,7 @@ class Search extends Component {
 
     // API Url
     const apiKey = "4ee6b80aa258404d942f5fe680b583e2";
-    let queryURL = `http://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${apiKey}&q=${topic}`;
+    let queryURL = `//api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${apiKey}&q=${topic}`;
 
     // Appends month/day to startYear
     if (startYear) {
