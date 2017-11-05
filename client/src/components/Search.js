@@ -67,7 +67,7 @@ class Search extends Component {
     axios.get(queryURL)
     .then(nytimes => {
       // console.log(nytimes.data.response.docs);
-      this.setState({ articles: nytimes.data.response.docs });
+      this.setState({ articles: nytimes.data.response.docs, topic: "", start_year: "",  end_year: "" });
     })
     .catch(function (error) {
       console.log(error);
@@ -78,7 +78,7 @@ class Search extends Component {
   // displays search results
   searchResults = () => {
     return (
-      <div className="row">
+      <div className="article-grid row">
         {this.state.articles.map(article => (
           <Article
             key={article._id} 

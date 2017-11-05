@@ -40,3 +40,9 @@ nav .brand-logo {
 .text-uppercase {
   text-transform: uppercase;
 }
+.text-right {
+  text-align: right;
+}
+.article-grid .article-item:nth-child(odd) {
+  clear: left;
+}

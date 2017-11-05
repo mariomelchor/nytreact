@@ -24,7 +24,7 @@ class Saved extends Component {
   // displays search results
   savedArticles = () => {
     return (
-      <div className="row">
+      <div className="article-grid row">
         {this.state.articles.map(article => (
           <Article
             key={article._id} 
