@@ -46,8 +46,8 @@ class Search extends Component {
     let endYear = this.state.end_year;
 
     // API Url
-    const apiKey = "4ee6b80aa258404d942f5fe680b583e2";
-    let queryURL = `//api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${apiKey}&q=${topic}`;
+    const apiKey = "PjQsAAI6kxc8Hw48aifcatmQbY8tv0kN";
+    let queryURL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${apiKey}&q=${topic}`;
 
     // Appends month/day to startYear
     if (startYear) {
